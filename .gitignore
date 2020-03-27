@@ -1,3 +1,7 @@
-out.dSYM
-out
-*.o
+*.xcuserstate
+
+*.xcscheme
+
+xcuserdata/
+
+Pod/
