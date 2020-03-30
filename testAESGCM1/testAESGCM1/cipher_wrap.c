@@ -61,9 +61,6 @@
 #include "utils.h"
 #endif
 
-#if defined(MBEDTLS_PLATFORM_C)
-#include "platform.h"
-#endif
 
 static mbedtls_gcm_context gcm_ctx;
 static mbedtls_aes_context aes_ctx;

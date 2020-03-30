@@ -256,7 +256,6 @@ int mbedtls_cipher_update( mbedtls_cipher_context_t *ctx, const unsigned char *i
 
     if( NULL == ctx || NULL == ctx->cipher_info || NULL == olen )
     {
-        printf("bad cipher_info!!");
         return( MBEDTLS_ERR_CIPHER_BAD_INPUT_DATA );
     }
 
@@ -265,7 +264,6 @@ int mbedtls_cipher_update( mbedtls_cipher_context_t *ctx, const unsigned char *i
     if( ctx->cipher_info->mode == MBEDTLS_MODE_ECB )
     {
         if( ilen != mbedtls_cipher_get_block_size( ctx ) ) {
-            printf("bb\n");
             return( MBEDTLS_ERR_CIPHER_FULL_BLOCK_EXPECTED );
         }
 
@@ -274,7 +272,6 @@ int mbedtls_cipher_update( mbedtls_cipher_context_t *ctx, const unsigned char *i
         if( 0 != ( ret = ctx->cipher_info->base->ecb_func( ctx->cipher_ctx,
                     ctx->operation, input, output ) ) )
         {
-            printf("cc\n");
             return( ret );
         }
 

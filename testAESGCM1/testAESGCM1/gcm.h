@@ -1,7 +1,7 @@
 /**
- * \file gcm.h
+ * @file gcm.h
  *
- * \brief Galois/Counter mode for 128-bit block ciphers
+ * @brief Galois/Counter mode for 128-bit block ciphers
  *
  *  Copyright (C) 2006-2015, ARM Limited, All Rights Reserved
  *  SPDX-License-Identifier: Apache-2.0
@@ -38,7 +38,7 @@ extern "C" {
 #endif
 
 /**
- * \brief          GCM context structure
+ * @brief          GCM context structure
  */
 typedef struct {
     mbedtls_cipher_context_t cipher_ctx;/*!< cipher context used */
@@ -54,23 +54,23 @@ typedef struct {
 mbedtls_gcm_context;
 
 /**
- * \brief           Initialize GCM context (just makes references valid)
+ * @brief           Initialize GCM context (just makes references valid)
  *                  Makes the context ready for mbedtls_gcm_setkey() or
  *                  mbedtls_gcm_free().
  *
- * \param ctx       GCM context to initialize
+ * @param ctx       GCM context to initialize
  */
 void mbedtls_gcm_init( mbedtls_gcm_context *ctx );
 
 /**
- * \brief           GCM initialization (encryption)
+ * @brief           GCM initialization (encryption)
  *
- * \param ctx       GCM context to be initialized
- * \param cipher    cipher to use (a 128-bit block cipher)
- * \param key       encryption key
- * \param keybits   must be 128, 192 or 256
+ * @param ctx       GCM context to be initialized
+ * @param cipher    cipher to use (a 128-bit block cipher)
+ * @param key       encryption key
+ * @param keybits   must be 128, 192 or 256
  *
- * \return          0 if successful, or a cipher specific error code
+ * @return          0 if successful, or a cipher specific error code
  */
 int mbedtls_gcm_setkey( mbedtls_gcm_context *ctx,
                         mbedtls_cipher_id_t cipher,
@@ -78,26 +78,26 @@ int mbedtls_gcm_setkey( mbedtls_gcm_context *ctx,
                         unsigned int keybits );
 
 /**
- * \brief           GCM buffer encryption/decryption using a block cipher
+ * @brief           GCM buffer encryption/decryption using a block cipher
  *
- * \note On encryption, the output buffer can be the same as the input buffer.
+ * @note On encryption, the output buffer can be the same as the input buffer.
  *       On decryption, the output buffer cannot be the same as input buffer.
  *       If buffers overlap, the output buffer must trail at least 8 bytes
  *       behind the input buffer.
  *
- * \param ctx       GCM context
- * \param mode      MBEDTLS_GCM_ENCRYPT or MBEDTLS_GCM_DECRYPT
- * \param length    length of the input data
- * \param iv        initialization vector
- * \param iv_len    length of IV
- * \param add       additional data
- * \param add_len   length of additional data
- * \param input     buffer holding the input data
- * \param output    buffer for holding the output data
- * \param tag_len   length of the tag to generate
- * \param tag       buffer for holding the tag
+ * @param ctx       GCM context
+ * @param mode      MBEDTLS_GCM_ENCRYPT or MBEDTLS_GCM_DECRYPT
+ * @param length    length of the input data
+ * @param iv        initialization vector
+ * @param iv_len    length of IV
+ * @param add       additional data
+ * @param add_len   length of additional data
+ * @param input     buffer holding the input data
+ * @param output    buffer for holding the output data
+ * @param tag_len   length of the tag to generate
+ * @param tag       buffer for holding the tag
  *
- * \return         0 if successful
+ * @return         0 if successful
  */
 int mbedtls_gcm_crypt_and_tag( mbedtls_gcm_context *ctx,
                        int mode,
@@ -112,24 +112,24 @@ int mbedtls_gcm_crypt_and_tag( mbedtls_gcm_context *ctx,
                        unsigned char *tag );
 
 /**
- * \brief           GCM buffer authenticated decryption using a block cipher
+ * @brief           GCM buffer authenticated decryption using a block cipher
  *
- * \note On decryption, the output buffer cannot be the same as input buffer.
+ * @note On decryption, the output buffer cannot be the same as input buffer.
  *       If buffers overlap, the output buffer must trail at least 8 bytes
  *       behind the input buffer.
  *
- * \param ctx       GCM context
- * \param length    length of the input data
- * \param iv        initialization vector
- * \param iv_len    length of IV
- * \param add       additional data
- * \param add_len   length of additional data
- * \param tag       buffer holding the tag
- * \param tag_len   length of the tag
- * \param input     buffer holding the input data
- * \param output    buffer for holding the output data
+ * @param ctx       GCM context
+ * @param length    length of the input data
+ * @param iv        initialization vector
+ * @param iv_len    length of IV
+ * @param add       additional data
+ * @param add_len   length of additional data
+ * @param tag       buffer holding the tag
+ * @param tag_len   length of the tag
+ * @param input     buffer holding the input data
+ * @param output    buffer for holding the output data
  *
- * \return         0 if successful and authenticated,
+ * @return         0 if successful and authenticated,
  *                 MBEDTLS_ERR_GCM_AUTH_FAILED if tag does not match
  */
 int mbedtls_gcm_auth_decrypt( mbedtls_gcm_context *ctx,
@@ -144,16 +144,16 @@ int mbedtls_gcm_auth_decrypt( mbedtls_gcm_context *ctx,
                       unsigned char *output );
 
 /**
- * \brief           Generic GCM stream start function
+ * @brief           Generic GCM stream start function
  *
- * \param ctx       GCM context
- * \param mode      MBEDTLS_GCM_ENCRYPT or MBEDTLS_GCM_DECRYPT
- * \param iv        initialization vector
- * \param iv_len    length of IV
- * \param add       additional data (or NULL if length is 0)
- * \param add_len   length of additional data
+ * @param ctx       GCM context
+ * @param mode      MBEDTLS_GCM_ENCRYPT or MBEDTLS_GCM_DECRYPT
+ * @param iv        initialization vector
+ * @param iv_len    length of IV
+ * @param add       additional data (or NULL if length is 0)
+ * @param add_len   length of additional data
  *
- * \return         0 if successful
+ * @return         0 if successful
  */
 int mbedtls_gcm_starts( mbedtls_gcm_context *ctx,
                 int mode,
@@ -163,21 +163,21 @@ int mbedtls_gcm_starts( mbedtls_gcm_context *ctx,
                 size_t add_len );
 
 /**
- * \brief           Generic GCM update function. Encrypts/decrypts using the
+ * @brief           Generic GCM update function. Encrypts/decrypts using the
  *                  given GCM context. Expects input to be a multiple of 16
  *                  bytes! Only the last call before mbedtls_gcm_finish() can be less
  *                  than 16 bytes!
  *
- * \note On decryption, the output buffer cannot be the same as input buffer.
+ * @note On decryption, the output buffer cannot be the same as input buffer.
  *       If buffers overlap, the output buffer must trail at least 8 bytes
  *       behind the input buffer.
  *
- * \param ctx       GCM context
- * \param length    length of the input data
- * \param input     buffer holding the input data
- * \param output    buffer for holding the output data
+ * @param ctx       GCM context
+ * @param length    length of the input data
+ * @param input     buffer holding the input data
+ * @param output    buffer for holding the output data
  *
- * \return         0 if successful or MBEDTLS_ERR_GCM_BAD_INPUT
+ * @return         0 if successful or MBEDTLS_ERR_GCM_BAD_INPUT
  */
 int mbedtls_gcm_update( mbedtls_gcm_context *ctx,
                 size_t length,
@@ -185,33 +185,26 @@ int mbedtls_gcm_update( mbedtls_gcm_context *ctx,
                 unsigned char *output );
 
 /**
- * \brief           Generic GCM finalisation function. Wraps up the GCM stream
+ * @brief           Generic GCM finalisation function. Wraps up the GCM stream
  *                  and generates the tag. The tag can have a maximum length of
  *                  16 bytes.
  *
- * \param ctx       GCM context
- * \param tag       buffer for holding the tag (may be NULL if tag_len is 0)
- * \param tag_len   length of the tag to generate
+ * @param ctx       GCM context
+ * @param tag       buffer for holding the tag (may be NULL if tag_len is 0)
+ * @param tag_len   length of the tag to generate
  *
- * \return          0 if successful or MBEDTLS_ERR_GCM_BAD_INPUT
+ * @return          0 if successful or MBEDTLS_ERR_GCM_BAD_INPUT
  */
 int mbedtls_gcm_finish( mbedtls_gcm_context *ctx,
                 unsigned char *tag,
                 size_t tag_len );
 
 /**
- * \brief           Free a GCM context and underlying cipher sub-context
+ * @brief           Free a GCM context and underlying cipher sub-context
  *
- * \param ctx       GCM context to free
+ * @param ctx       GCM context to free
  */
 void mbedtls_gcm_free( mbedtls_gcm_context *ctx );
-
-/**
- * \brief          Checkup routine
- *
- * \return         0 if successful, or 1 if the test failed
- */
-int mbedtls_gcm_self_test( int verbose );
 
 #ifdef __cplusplus
 }
